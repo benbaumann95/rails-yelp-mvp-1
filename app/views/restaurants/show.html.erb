@@ -1,0 +1,32 @@
+<h1><%= @restaurant.name %></h1>
+
+<p><%= @restaurant.category %></p>
+<p><%= @restaurant.address %></p>
+<p><%= @restaurant.phone_number %></p>
+
+<h3>Reviews for <%= @restaurant.name %>:</h3>
+<p>
+
+  <% if !@restaurant.reviews.ids.empty? %>
+
+  Average rating:
+  <% rating_array = [] %>
+    <% @restaurant.reviews.each do |review| %>
+      <% rating_array << review.rating %>
+    <% end %>
+    <%= rating_array.reduce(:+)/rating_array.length.to_f %>
+    <% else %>
+      <p>No review yet</p>
+  <% end %>
+</p>
+
+<ul><% @restaurant.reviews.reverse_each do |review| %>
+  <li><%= review.content %>
+    <p>Rating: <%= review.rating %></li>
+  <% end %>
+</ul>
+
+
+<p><%= link_to "Write a review", new_restaurant_review_path(@restaurant) %></p>
+
+<p><%= link_to "Go back to all restaurants", restaurants_path %></p>

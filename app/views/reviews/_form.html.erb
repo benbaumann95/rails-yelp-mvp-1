@@ -1,0 +1,5 @@
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content, required: true %>
+  <%= f.input :rating, :label => 'Between 0 - 5', required: true %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

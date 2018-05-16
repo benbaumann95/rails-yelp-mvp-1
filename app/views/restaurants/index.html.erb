@@ -1,0 +1,10 @@
+<h1>All restaurants</h1>
+
+<h5><%= link_to "Add a new restaurant", new_restaurant_path %></h5>
+
+<div>
+<% @restaurants.reverse_each do |restaurant| %>
+  <p><%= link_to restaurant.name, restaurant_path(restaurant) %></p>
+  <p><%= restaurant.address %></p>
+<% end %>
+</div>
